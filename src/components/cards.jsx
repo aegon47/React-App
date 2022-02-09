@@ -3,10 +3,21 @@ import Todocard from './todocard';
 
 class Cards extends Component {
     state = {
-        value:[1,2,3,4],
+        value:[],
         text:''
-      } 
+        
+    } 
 
+
+    getLocalItems = () =>{
+        let lst = localStorage.getItem('lists');
+        if(lst){
+            return JSON.parse(localStorage.getItem('lists'));
+        }
+        else{
+            return [];
+        }
+    }
 
     onChangeText = (e) =>{
         this.setState({text:e.target.value})
@@ -15,10 +26,14 @@ class Cards extends Component {
     }
 
     handleSubmit = () => {
-        const value = [...this.state.value, this.state.text];
+        //this.state.value.setState({value:this.getLocalItems()})
+        const value = [...this.getLocalItems(), this.state.text];
+        localStorage.setItem('lists', JSON.stringify(value));
         this.setState({value})
         this.setState({text :''})
     }
+
+    
 
     totalSum = () => {
         let sum = 0;
@@ -36,10 +51,11 @@ class Cards extends Component {
     render() { 
         return (
         <React.Fragment>
+            
             <h3>sum is {this.totalSum()}</h3>
             <input type={'number'} value = {this.state.text} onChange = {this.onChangeText}/>
             <button onClick={this.handleSubmit}>hello</button>
-            {this.state.value.map(v=><Todocard value = {v}/>)}
+            {this.getLocalItems().map(v=><Todocard value = {v}/>)}
 
         </React.Fragment>
         
