@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/todocard.css'
 
 
 class Todocard extends Component {
@@ -6,9 +7,10 @@ class Todocard extends Component {
     render() { 
         return (
             <React.Fragment>
-                <h1>
+                    <div className='container'>
                     {this.props.value}
-                </h1>
+                    </div>
+
 
             </React.Fragment>
         );
