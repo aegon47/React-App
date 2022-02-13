@@ -33,8 +33,14 @@ class Cards extends Component {
             this.setState({text :''})
         }
         else{
-            {alert("enter a number numpty")}
+            {alert("Enter Something!!!")}
         }
+    }
+
+    resetStuff = () =>{
+        const value = []
+        localStorage.setItem('lists', JSON.stringify(value));
+        this.setState({value})
     }
     totalSum = () => {
         let sum = 0;
@@ -54,13 +60,19 @@ class Cards extends Component {
         return (
         <React.Fragment>
             
-            <h3>sum is {this.totalSum()}</h3>
-            <input type={'number'} value = {this.state.text} onChange = {this.onChangeText}/>
+            {/* <h3>sum is {this.totalSum()}</h3> */}
+            <h2>Number of items: {this.getLocalItems().length}</h2>
+            <div className=''>
+                <input type={'text'} value = {this.state.text} onChange = {this.onChangeText} className="inputField" placeholder='Enter your thoughts'/>
+            
+            </div>
             {/* <input type={'text'} value = {this.state.inputText} onChange = {(e)=>this.setState({text:e.target.value})}/> */}
+            <button onClick={this.handleSubmit} className='ButtonClick' type='submit'>hello</button>
+            <div>
+                <button onClick={this.resetStuff} type='reset' className='resetButton'>Reset</button>
+            </div>
 
-            <button onClick={this.handleSubmit} className='ButtonClick'>hello</button>
-
-            {this.getLocalItems().map(v=><Todocard value = {v}/>)}
+            {this.getLocalItems().map(v=><Todocard value = {v} />)}
 
 
         </React.Fragment>

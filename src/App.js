@@ -1,13 +1,18 @@
 import Todocard from './components/todocard';
 import './App.css' 
 import Cards from './components/cards';
+import React, {useEffect} from 'react';
 
 function App() {
+
+
   return (
     <div className="App">
         <Cards/>
-        <h2>   hello </h2>
     </div>
+
+
+    
   );
 }
 
